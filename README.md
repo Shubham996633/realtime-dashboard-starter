@@ -2,7 +2,7 @@
 
 A small, working starter for **live dashboards**: a FastAPI WebSocket server that streams events to many browsers, and a Next.js / React dashboard that stays fast and honest when the connection drops.
 
-It's the pattern we use at **[BuildKodiq](https://buildkodiq.com)** for real-time screens (trading-style terminals, operations dashboards, live analytics), stripped down to what every one of them needs. The feed here is simulated job events; swap `produce()` in `server/main.py` for your real source.
+Made by **[BuildKodiq](https://buildkodiq.com)** as a small reference for live dashboards. The feed here is simulated job events; swap `produce()` in `server/main.py` for your real source.
 
 ![Live dashboard](docs/screenshot.jpg)
 
@@ -44,9 +44,8 @@ Config: `EVENTS_PER_SECOND`, `CORS_ORIGINS` (server); `NEXT_PUBLIC_WS_URL`, `NEX
 
 ## Taking it to production
 
-What we usually add on real projects:
+Worth adding:
 - Auth on the WebSocket handshake (decide what a user may see when the socket opens)
-- Paid tiers / usage credits via Stripe, with balances always refreshed from the server and idempotent webhook handling
 - Redis pub/sub (or your broker) between the producer and several server instances
 - Virtualised tables for thousands of visible rows; canvas charts for high-frequency series
 - A recorded or simulated peak feed replayed at 2–3× expected rate in CI
